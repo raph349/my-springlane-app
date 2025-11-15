@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SpringLane</title>
+  <style>
+    body {
+      background: #000;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .container {
+      padding: 20px;
+      max-width: 100%;
+    }
+    .login-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to bottom, #000, #200030);
+      text-align: center;
+      padding: 20px;
+    }
+    .login-logo {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      background: linear-gradient(to right, #ffffff, #8A2BE2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .login-form {
+      width: 100%;
+      max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .login-input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 25px;
+      background: rgba(51, 25, 76, 0.5);
+      border: none;
+      color: white;
+      font-size: 16px;
+    }
+    .login-button {
+      width: 100%;
+      padding: 10px;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .login-links {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .login-link {
+      color: #8A2BE2;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .hidden {
+      display: none !important;
+    }
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+    .header {
+      padding: 20px 0;
+    }
+    .search {
+      width: 100%;
+      padding: 10px;
+      border-radius: 25px;
+      background: rgba(51, 25, 76, 0.5);
+      border: none;
+      color: white;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .store-grid {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+    .store-card {
+      min-width: 120px;
+      background: white;
+      color: black;
+      border-radius: 15px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .store-logo {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 10px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .store-name {
+      font-size: 12px;
+      margin: 5px 0;
+      font-weight: bold;
+    }
+    .store-time {
+      font-size: 10px;
+      color: #666;
+    }
+    .store-rating {
+      font-size: 10px;
+      color: gold;
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(51, 25, 76, 0.7);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      font-size: 12px;
+      padding: 5px;
+      cursor: pointer;
+    }
+    .nav-item.active {
+      color: #8A2BE2;
+    }
+    .nav-icon {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    .basket-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .basket-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+    .store-page {
+      padding: 20px;
+    }
+    .store-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 20px;
+    }
+    .store-logo-large {
+      width: 80px;
+      height: 80px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+      padding: 10px 0;
+    }
+    .product-card {
+      background: white;
+      color: black;
+      border-radius: 15px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .product-image {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 10px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .product-name {
+      font-size: 12px;
+      margin: 5px 0;
+    }
+    .product-price {
+      font-size: 14px;
+      font-weight: bold;
+      color: #000;
+    }
+    .product-detail-page {
+      padding: 20px;
+    }
+    .product-detail-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 20px;
+    }
+    .product-detail-image {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 10px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .product-detail-info {
+      text-align: left;
+      margin-left: 10px;
+    }
+    .product-detail-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 5px 0;
+      color: #000;
+    }
+    .product-detail-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+      margin: 5px 0;
+    }
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .quantity-button {
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .quantity-display {
+      font-size: 24px;
+      font-weight: bold;
+      width: 40px;
+      text-align: center;
+    }
+    .add-to-basket-button {
+      width: 100%;
+      padding: 10px;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .offers-page {
+      padding: 20px;
+    }
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+      padding: 10px 0;
+    }
+    .offer-card {
+      background: white;
+      color: black;
+      border-radius: 15px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .offer-image {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 10px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .offer-name {
+      font-size: 12px;
+      margin: 5px 0;
+    }
+    .offer-discount {
+      font-size: 12px;
+      color: red;
+      font-weight: bold;
+    }
+    .offer-price {
+      font-size: 14px;
+      font-weight: bold;
+      color: #000;
+    }
+    .nfc-page {
+      padding: 20px;
+    }
+    .nfc-content {
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .nfc-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+    .account-page {
+      padding: 20px;
+    }
+    .account-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 20px;
+    }
+    .account-logo {
+      width: 80px;
+      height: 80px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      padding: 10px 0;
+    }
+    .feature-card {
+      background: white;
+      color: black;
+      border-radius: 15px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 10px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .feature-title {
+      font-size: 12px;
+      margin: 5px 0;
+    }
+    .favorite-card,
+    .transactions-card {
+      background: linear-gradient(to bottom right, #4a00e0, #8e2de2);
+      border-radius: 15px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      color: white;
+    }
+    .help-page,
+    .wallet-page,
+    .receipts-page,
+    .memberships-page,
+    .inbox-page,
+    .settings-page {
+      padding: 20px;
+    }
+    .help-header,
+    .wallet-header,
+    .receipts-header,
+    .memberships-header,
+    .inbox-header,
+    .settings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 20px;
+    }
+    .help-back-button,
+    .wallet-back-button,
+    .receipts-back-button,
+    .memberships-back-button,
+    .inbox-back-button,
+    .settings-back-button {
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 24px;
+    }
+    .help-title,
+    .wallet-title,
+    .receipts-title,
+    .memberships-title,
+    .inbox-title,
+    .settings-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+      color: white;
+    }
+    .help-input,
+    .wallet-input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(51, 25, 76, 0.5);
+      border: none;
+      color: white;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .help-send-button,
+    .wallet-add-button {
+      width: 100%;
+      padding: 10px;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .brand-grid {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+    .brand-card {
+      background: rgba(51, 25, 76, 0.5);
+      border-radius: 25px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      color: white;
+    }
+    .message-card {
+      background: rgba(51, 25, 76, 0.5);
+      border-radius: 15px;
+      padding: 10px;
+      margin-bottom: 10px;
+      color: white;
+    }
+    .message-sender {
+      font-size: 14px;
+      font-weight: bold;
+      color: #8A2BE2;
+      margin: 0;
+    }
+    .message-subject {
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      margin: 5px 0;
+    }
+    .message-preview {
+      font-size: 14px;
+      color: #aaa;
+      margin: 0;
+    }
+    .message-timestamp {
+      font-size: 12px;
+      color: #aaa;
+      margin: 0;
+    }
+    .basket-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+      display: none;
+      padding: 20px;
+      overflow-y: auto;
+      color: white;
+    }
+    .basket-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .basket-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .basket-close {
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .basket-items {
+      margin-bottom: 20px;
+    }
+    .basket-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      background: white;
+      color: black;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .basket-item-image {
+      font-size: 24px;
+    }
+    .basket-item-info {
+      flex: 1;
+    }
+    .basket-item-name {
+      font-weight: bold;
+    }
+    .basket-item-qty {
+      font-size: 12px;
+    }
+    .basket-item-price {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .basket-remove {
+      cursor: pointer;
+      color: red;
+      font-weight: bold;
+    }
+    .basket-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .basket-actions {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .basket-pay {
+      flex: 1;
+      padding: 10px;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .basket-continue {
+      flex: 1;
+      padding: 10px;
+      background: transparent;
+      color: white;
+      border: 1px solid white;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Page -->
+  <div id="login-page" class="login-page">
+    <div class="login-logo">SpringLane</div>
+    <div class="login-form">
+      <input type="email" class="login-input" id="login-email" placeholder="john.doe@email.abc" />
+      <input type="password" class="login-input" id="login-password" placeholder="Password" />
+      <button class="login-button" id="login-button">Sign In</button>
+      <div class="login-links">
+        <span>Forgot Password? <span class="login-link" id="forgot-password">Click Here</span></span><br>
+        <span>Staff member? <span class="login-link" id="staff-login">Sign In Here</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main App (Hidden until login) -->
+  <div id="app" class="container" style="display: none;">
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+      <div class="header">
+        <!-- Location Dropdown Trigger -->
+        <div id="location-header" style="cursor: pointer; padding: 10px 20px; background: rgba(51, 25, 76, 0.5); border-radius: 25px; display: flex; justify-content: space-between; align-items: center;" onclick="toggleLocationDropdown()">
+          <div>
+            <div style="font-size: 14px; color: #aaa;">Located at</div>
+            <div id="location-display" style="font-weight: bold; font-size: 16px;">218 Dalhousie St.</div>
+          </div>
+          <div style="font-size: 18px;">▼</div>
+        </div>
+
+        <!-- Location Dropdown (Hidden by Default) -->
+        <div id="location-dropdown" class="hidden" style="background: rgba(51, 25, 76, 0.7); border-radius: 20px; padding: 15px; margin-top: 10px;">
+          <input type="text" id="location-input" placeholder="Enter address or zip code" class="login-input" style="width: 100%; margin-bottom: 10px;" />
+          <button class="login-button" style="background: #8A2BE2; color: white; font-size: 14px; padding: 8px;" onclick="useCurrentLocation()">
+            Use Current Location
+          </button>
+          <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <button class="login-button" style="flex: 1; font-size: 14px; padding: 8px;" onclick="saveLocation()">Save</button>
+            <button class="login-button" style="flex: 1; background: #555; color: white; font-size: 14px; padding: 8px;" onclick="toggleLocationDropdown()">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <input type="text" class="search" placeholder="Search SpringLane stores..." id="search-input" />
+      <div id="search-results" class="section hidden">
+        <div class="section-title">Result of your search...</div>
+        <div id="search-stores" class="store-grid"></div>
+      </div>
+      <div class="section">
+        <div class="section-title">Featured on SpringLane</div>
+        <div class="store-grid" id="featured-stores"></div>
+      </div>
+      <div class="section">
+        <div class="section-title">Stores nearby</div>
+        <div class="store-grid" id="nearby-stores"></div>
+      </div>
+      <div class="basket-icon" id="basket-icon">
+        🛒
+        <div class="basket-count" id="basket-count">0</div>
+      </div>
+    </div>
+
+    <!-- Store Page -->
+    <div id="store-page" class="page">
+      <div class="store-page">
+        <div class="store-header">
+          <div id="store-back-button" style="cursor: pointer; font-size: 24px;">←</div>
+          <div id="store-logo" class="store-logo-large">🛍️</div>
+          <div style="width: 24px;"></div>
+        </div>
+        <div class="product-grid" id="store-products"></div>
+        <div class="basket-icon" id="store-basket-icon">
+          🛒
+          <div class="basket-count" id="store-basket-count">0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Detail Page -->
+    <div id="product-detail-page" class="page">
+      <div class="product-detail-page">
+        <div class="product-detail-header">
+          <div id="product-back-button" style="cursor: pointer; font-size: 24px;">←</div>
+          <div id="product-store-logo" class="store-logo-large">🛍️</div>
+          <div style="width: 24px;"></div>
+        </div>
+        <div class="product-detail-image">👕</div>
+        <div class="product-detail-info">
+          <div class="product-detail-title" id="product-name">T-shirt</div>
+          <div class="product-detail-price" id="product-price">$12.99</div>
+          <div id="product-ref">Ref.: 62553728</div>
+          <div id="product-color">Color: Pink</div>
+          <div id="product-material">Material: 100% Cotton</div>
+          <div id="product-size">Size: M</div>
+        </div>
+        <div class="quantity-selector">
+          <div class="quantity-button" id="decrease-quantity">−</div>
+          <div class="quantity-display" id="quantity-display">1</div>
+          <div class="quantity-button" id="increase-quantity">+</div>
+        </div>
+        <button class="add-to-basket-button" id="add-to-basket">Add to basket</button>
+      </div>
+    </div>
+
+    <!-- Offers Page -->
+    <div id="offers-page" class="page">
+      <div class="offers-page">
+        <div class="section-title" style="padding-left:20px;">Offers at your favourite</div>
+        <div class="offer-grid" id="offers-grid"></div>
+        <div class="basket-icon" id="offers-basket-icon">
+          🛒
+          <div class="basket-count" id="offers-basket-count">0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NFC Page -->
+    <div id="nfc-page" class="page">
+      <div class="nfc-content">
+        <div class="nfc-icon">📡</div>
+        <div style="font-size: 18px; font-weight: bold; margin-bottom: 20px;">You're one tap away from a new look!</div>
+        <div style="font-size: 16px;">Tap the back of your device on the SpringLane Tag</div>
+      </div>
+    </div>
+
+    <!-- Account Page -->
+    <div id="account-page" class="page">
+      <div class="account-header">
+        <div style="font-size: 36px; font-weight: bold;">John Doe</div>
+        <div class="account-logo">👤</div>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card" onclick="switchPage('help-page')">
+          <div class="feature-icon">ℹ️</div>
+          <div class="feature-title">Help</div>
+        </div>
+        <div class="feature-card" onclick="switchPage('wallet-page')">
+          <div class="feature-icon">💰</div>
+          <div class="feature-title">Wallet</div>
+        </div>
+        <div class="feature-card" onclick="switchPage('receipts-page')">
+          <div class="feature-icon">📄</div>
+          <div class="feature-title">Receipts</div>
+        </div>
+        <div class="feature-card" onclick="switchPage('memberships-page')">
+          <div class="feature-icon">🛒</div>
+          <div class="feature-title">Memberships</div>
+        </div>
+        <div class="feature-card" onclick="switchPage('inbox-page')">
+          <div class="feature-icon">✉️</div>
+          <div class="feature-title">Inbox</div>
+        </div>
+        <div class="feature-card" onclick="switchPage('settings-page')">
+          <div class="feature-icon">⚙️</div>
+          <div class="feature-title">Settings</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <div class="favorite-card">
+          <div class="feature-title">Favourite</div>
+          <div style="font-size: 24px; margin-top: 10px;">Zara</div>
+        </div>
+        <div class="transactions-card">
+          <div class="feature-title">Transactions</div>
+          <div style="font-size: 24px; margin-top: 10px;">34</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subpages -->
+    <div id="help-page" class="page">
+      <div class="help-header">
+        <div class="help-back-button" onclick="switchPage('account-page')">←</div>
+        <div class="help-title">Help & Support</div>
+        <div style="width: 24px;"></div>
+      </div>
+      <textarea class="help-input" id="help-message" placeholder="Enter your message..."></textarea>
+      <button class="help-send-button" onclick="alert('Message sent!'); switchPage('account-page')">Send Message</button>
+    </div>
+
+    <div id="wallet-page" class="page">
+      <div class="wallet-header">
+        <div class="wallet-back-button" onclick="switchPage('account-page')">←</div>
+        <div class="wallet-title">Wallet</div>
+        <div style="width: 24px;"></div>
+      </div>
+      <div class="wallet-form">
+        <div style="font-size: 16px; margin-bottom: 10px;">Payment Methods</div>
+        <input class="wallet-input" type="text" id="card-number" placeholder="Card Number" />
+        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+          <input class="wallet-input" type="text" id="expiry" placeholder="MM/YY" />
+          <input class="wallet-input" type="text" id="cvv" placeholder="CVV" />
+        </div>
+        <input class="wallet-input" type="text" id="bitcoin-address" placeholder="Bitcoin Wallet Address" />
+        <button class="wallet-add-button" style="margin-top: 15px;" onclick="
+          const card = document.getElementById('card-number').value;
+          if (card) {
+            alert('Card ending in ' + card.slice(-4) + ' added successfully!');
+            document.getElementById('card-number').value = '';
+            document.getElementById('expiry').value = '';
+            document.getElementById('cvv').value = '';
+          } else {
+            alert('Please enter a card number.');
+          }
+        ">Add Card</button>
+      </div>
+    </div>
+
+    <div id="receipts-page" class="page">
+      <div class="receipts-header">
+        <div class="receipts-back-button" onclick="switchPage('account-page')">←</div>
+        <div class="receipts-title">Receipts</div>
+        <div style="width: 24px;"></div>
+      </div>
+      <div style="text-align: center; padding: 50px 20px;">
+        <div style="font-size: 60px; margin-bottom: 20px;">📄</div>
+        <div>Your receipts will appear here after your first purchase.</div>
+      </div>
+    </div>
+
+    <div id="memberships-page" class="page">
+      <div class="memberships-header">
+        <div class="memberships-back-button" onclick="switchPage('account-page')">←</div>
+        <div class="memberships-title">Memberships</div>
+        <div style="width: 24px;"></div>
+      </div>
+      <div class="brand-grid">
+        <div class="brand-card" onclick="alert('H&M login')">H&M</div>
+        <div class="brand-card" onclick="alert('Zara login')">Zara</div>
+        <div class="brand-card" onclick="alert('Bershka login')">Bershka</div>
+        <div class="brand-card" onclick="alert('Vans login')">Vans</div>
+        <div class="brand-card" onclick="alert('BZB login')">BZB</div>
+        <div class="brand-card" onclick="alert('Kiabi login')">Kiabi</div>
+        <div class="brand-card" onclick="alert('Roots login')">Roots</div>
+        <div class="brand-card" onclick="alert('Dynamite login')">Dynamite</div>
+      </div>
+    </div>
+
+    <div id="inbox-page" class="page">
+      <div class="inbox-header">
+        <div class="inbox-back-button" onclick="switchPage('account-page')">←</div>
+        <div class="inbox-title">Inbox</div>
+        <div style="width: 24px;"></div>
+      </div>
+      <div class="message-card">
+        <div class="message-sender">SpringLane</div>
+        <div class="message-subject">Welcome to SpringLane!</div>
+        <div class="message-preview">We're thrilled to have you with us. Happy shopping!</div>
+        <div class="message-timestamp">Just now</div>
+      </div>
+    </div>
+
+    <!-- Settings Page -->
+    <div id="settings-page" class="page">
+      <div class="help-header">
+        <div class="help-back-button" onclick="switchPage('account-page')">←</div>
+        <div class="help-title">Settings</div>
+        <div style="width: 24px;"></div>
+      </div>
+      <div class="feature-grid" style="grid-template-columns: 1fr; gap: 10px; padding-top: 20px;">
+        <div class="feature-card" onclick="alert('Logging out...'); document.getElementById('app').style.display='none'; document.getElementById('login-page').style.display='flex';">
+          <div class="feature-icon">🚪</div>
+          <div class="feature-title">Log Out</div>
+        </div>
+        <div class="feature-card" onclick="alert('Profile settings')">
+          <div class="feature-icon">👤</div>
+          <div class="feature-title">Profile</div>
+        </div>
+        <div class="feature-card" onclick="alert('Notification preferences')">
+          <div class="feature-icon">🔔</div>
+          <div class="feature-title">Notifications</div>
+        </div>
+        <div class="feature-card" onclick="alert('Privacy & Security')">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-title">Privacy</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basket Overlay -->
+    <div id="basket-overlay" class="basket-overlay">
+      <div class="basket-header">
+        <div class="basket-title">Basket</div>
+        <div class="basket-close" onclick="closeBasket()">✕</div>
+      </div>
+      <div id="basket-items"></div>
+      <div class="basket-total">
+        <div>Total:</div>
+        <div id="basket-total">$0.00</div>
+      </div>
+      <div class="basket-actions">
+        <button class="basket-pay" onclick="switchPage('nfc-page'); document.getElementById('basket-overlay').style.display='none';">Scan Now</button>
+        <button class="basket-continue" onclick="closeBasket()">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <div class="nav-item active" data-page="home-page" onclick="switchPage('home-page')">
+      <div class="nav-icon">🏠</div>
+      <div>Home</div>
+    </div>
+    <div class="nav-item" data-page="offers-page" onclick="switchPage('offers-page')">
+      <div class="nav-icon">🏷️</div>
+      <div>Offers</div>
+    </div>
+    <div class="nav-item" data-page="nfc-page" onclick="switchPage('nfc-page')">
+      <div class="nav-icon">📡</div>
+      <div>NFC</div>
+    </div>
+    <div class="nav-item" data-page="account-page" onclick="switchPage('account-page')">
+      <div class="nav-icon">👤</div>
+      <div>Account</div>
+    </div>
+  </div>
+
+  <script>
+    // ====== DATA ======
+    const stores = [
+      {id:'hm', name:'H&M', time:'15 min', rating:'4.2', logo:'👕'},
+      {id:'zara', name:'Zara', time:'15 min', rating:'4.8', logo:'🧥'},
+      {id:'bershka', name:'Bershka', time:'5 min', rating:'3.9', logo:'👕'},
+      {id:'vans', name:'Vans', time:'5 min', rating:'4.4', logo:'👟'},
+      {id:'bzb', name:'BZB', time:'50 metres', rating:'4.5', logo:'👕'},
+      {id:'kiabi', name:'Kiabi', time:'50 metres', rating:'4.3', logo:'👗'},
+      {id:'roots', name:'Roots', time:'200 metres', rating:'4.2', logo:'🎒'},
+      {id:'dyna', name:'Dynamite', time:'200 metres', rating:'4.8', logo:'👖'}
+    ];
+
+    const offers = [
+      {id:'o1', store:'Zara', name:'Faux Fur Jacket', price:109.00, discount:'-45%', img:'🧥'},
+      {id:'o2', store:'H&M', name:'Striped Jumper', price:21.99, discount:'-51%', img:'👕'},
+      {id:'o3', store:'Aritzia', name:'Tube Top', price:43.99, discount:'-60%', img:'👚'}
+    ];
+
+    const products = {
+      hm: [
+        {id:'hm1', name:'T-shirt', price:12.99, img:'👕'},
+        {id:'hm2', name:'T-shirt', price:12.99, img:'👕'},
+        {id:'hm3', name:'Vest', price:70.99, img:'👚'},
+        {id:'hm4', name:'Shoes', price:32.99, img:'👟'}
+      ],
+      zara: [
+        {id:'z1', name:'Faux Fur Jacket', price:109.00, img:'🧥'},
+        {id:'z2', name:'Wool Bomber', price:109.00, img:'🧥'},
+        {id:'z3', name:'Minimal Wool', price:109.00, img:'🧥'}
+      ],
+      bershka: [
+        {id:'b1', name:'Graphic Tee', price:19.99, img:'👕'},
+        {id:'b2', name:'Denim Jacket', price:89.99, img:'🧥'}
+      ],
+      vans: [
+        {id:'v1', name:'Sk8-Hi', price:75.00, img:'👟'},
+        {id:'v2', name:'Old Skool', price:65.00, img:'👟'}
+      ]
+    };
+
+    // ====== STATE ======
+    let basket = [];
+    let currentView = 'home-page';
+    let currentStore = null;
+    let currentProduct = null;
+    let currentLocation = "218 Dalhousie St.";
+
+    // ====== BASKET LOGIC ======
+    function addToBasket(item) {
+      const found = basket.find(i => i.id === item.id);
+      if (found) found.quantity += item.quantity;
+      else basket.push({...item, quantity: item.quantity || 1});
+      updateBasket();
+    }
+    function removeFromBasket(id) {
+      const item = basket.find(i => i.id === id);
+      if (item && item.quantity > 1) item.quantity--;
+      else basket = basket.filter(i => i.id !== id);
+      updateBasket();
+    }
+    function updateBasket() {
+      const count = basket.reduce((sum, i) => sum + i.quantity, 0);
+      const total = basket.reduce((sum, i) => sum + i.price * i.quantity, 0);
+      document.getElementById('basket-count').textContent = count;
+      document.getElementById('offers-basket-count').textContent = count;
+      document.getElementById('store-basket-count').textContent = count;
+      document.getElementById('basket-total').textContent = `$${total.toFixed(2)}`;
+      const basketItems = document.getElementById('basket-items');
+      if (basket.length === 0) {
+        basketItems.innerHTML = '<div style="text-align: center; padding: 20px; color: white;">Your basket is empty</div>';
+      } else {
+        basketItems.innerHTML = basket.map(item => `
+          <div class="basket-item">
+            <div class="basket-item-image">${item.img}</div>
+            <div class="basket-item-info">
+              <div class="basket-item-name">${item.store} – ${item.name}</div>
+              <div class="basket-item-qty">Qty: ${item.quantity}</div>
+              <div class="basket-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+            </div>
+            <div class="basket-remove" onclick="removeFromBasket('${item.id}')">×</div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Helper to get colored store name
+    function getColoredStoreName(name) {
+      if (name === 'H&M') return `<span style="color: red;">${name}</span>`;
+      if (name === 'Roots') return `<span style="color: green;">${name}</span>`;
+      if (name === 'Kiabi') return `<span style="color: blue;">${name}</span>`;
+      return name;
+    }
+
+    // ====== LOCATION LOGIC ======
+    function toggleLocationDropdown() {
+      const dropdown = document.getElementById('location-dropdown');
+      const header = document.getElementById('location-header');
+      if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+        header.style.borderBottomLeftRadius = '0';
+        header.style.borderBottomRightRadius = '0';
+      } else {
+        dropdown.classList.add('hidden');
+        header.style.borderRadius = '25px';
+      }
+    }
+
+    function useCurrentLocation() {
+      alert('Fetching your location...\n(Real GPS requires HTTPS and user permission)');
+      document.getElementById('location-input').value = 'Your Current Location';
+    }
+
+    function saveLocation() {
+      const input = document.getElementById('location-input').value.trim();
+      if (input) {
+        currentLocation = input;
+        document.getElementById('location-display').textContent = currentLocation;
+      }
+      toggleLocationDropdown();
+    }
+
+    // ====== RENDER ======
+    function render() {
+      // Home Page
+      const featuredStores = document.getElementById('featured-stores');
+      featuredStores.innerHTML = stores.slice(0,4).map(s => `
+        <div class="store-card" onclick="openStorePage('${s.id}', '${s.name}')">
+          <div class="store-logo">${s.logo}</div>
+          <div class="store-name">${getColoredStoreName(s.name)}</div>
+          <div class="store-time">${s.time}</div>
+          <div class="store-rating">★ ${s.rating}</div>
+        </div>
+      `).join('');
+
+      const nearbyStores = document.getElementById('nearby-stores');
+      nearbyStores.innerHTML = stores.slice(4).map(s => `
+        <div class="store-card" onclick="openStorePage('${s.id}', '${s.name}')">
+          <div class="store-logo">${s.logo}</div>
+          <div class="store-name">${getColoredStoreName(s.name)}</div>
+          <div class="store-time">${s.time}</div>
+          <div class="store-rating">★ ${s.rating}</div>
+        </div>
+      `).join('');
+
+      // Offers Page
+      const offersGrid = document.getElementById('offers-grid');
+      offersGrid.innerHTML = offers.map(o => `
+        <div class="offer-card" onclick="openProductDetailPage('${o.id}', '${o.store}', '${o.name}', ${o.price}, '${o.discount}', '${o.img}')">
+          <div class="offer-image">${o.img}</div>
+          <div class="offer-name">${o.name}</div>
+          <div class="offer-discount">${o.discount}</div>
+          <div class="offer-price">$${o.price.toFixed(2)}</div>
+        </div>
+      `).join('');
+
+      updateBasket();
+    }
+
+    // ====== NAVIGATION ======
+    function switchPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+      currentView = pageId;
+    }
+
+    function openStorePage(storeId, storeName) {
+      currentStore = storeId;
+      document.getElementById('home-page').classList.remove('active');
+      document.getElementById('store-page').classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.getElementById('store-logo').textContent = storeName;
+      const storeProducts = document.getElementById('store-products');
+      storeProducts.innerHTML = products[storeId].map(p => `
+        <div class="product-card" onclick="openProductDetailPage('${p.id}', '${storeId}', '${p.name}', ${p.price}, '', '${p.img}')">
+          <div class="product-image">${p.img}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-price">$${p.price.toFixed(2)}</div>
+        </div>
+      `).join('');
+    }
+
+    function openProductDetailPage(productId, storeId, productName, price, discount, img) {
+      currentProduct = { id: productId, store: storeId, name: productName, price: price, discount: discount, img: img };
+      document.getElementById('store-page').classList.remove('active');
+      document.getElementById('product-detail-page').classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.getElementById('product-store-logo').textContent = storeId;
+      document.getElementById('product-name').textContent = productName;
+      document.getElementById('product-price').textContent = `$${price.toFixed(2)}`;
+      document.getElementById('product-ref').textContent = `Ref.: ${productId}`;
+      document.getElementById('product-color').textContent = `Color: ${img === '👕' ? 'Pink' : img === '👚' ? 'White' : 'Black'}`;
+      document.getElementById('product-material').textContent = `Material: ${img === '👕' ? '100% Cotton' : img === '👚' ? 'Polyester' : 'Leather'}`;
+      document.getElementById('product-size').textContent = `Size: ${img === '👕' ? 'M' : img === '👚' ? 'L' : '9'}`;
+    }
+
+    function closeStorePage() {
+      document.getElementById('store-page').classList.remove('active');
+      document.getElementById('home-page').classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelector(`[data-page="home-page"]`).classList.add('active');
+      currentStore = null;
+    }
+
+    function closeProductDetailPage() {
+      document.getElementById('product-detail-page').classList.remove('active');
+      document.getElementById('store-page').classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelector(`[data-page="store-page"]`).classList.add('active');
+      currentProduct = null;
+    }
+
+    function openBasket() {
+      document.getElementById('basket-overlay').style.display = 'block';
+    }
+
+    function closeBasket() {
+      document.getElementById('basket-overlay').style.display = 'none';
+    }
+
+    // ====== SEARCH ======
+    document.getElementById('search-input').addEventListener('input', function(e) {
+      const searchText = e.target.value.toLowerCase();
+      const searchResults = document.getElementById('search-results');
+      const searchStores = document.getElementById('search-stores');
+      if (searchText) {
+        searchResults.classList.remove('hidden');
+        const filtered = stores.filter(s => s.name.toLowerCase().includes(searchText));
+        if (filtered.length === 0) {
+          searchStores.innerHTML = '<div style="text-align: center; padding: 20px; color: white;">No stores found</div>';
+        } else {
+          searchStores.innerHTML = filtered.map(s => `
+            <div class="store-card" onclick="openStorePage('${s.id}', '${s.name}')">
+              <div class="store-logo">${s.logo}</div>
+              <div class="store-name">${getColoredStoreName(s.name)}</div>
+              <div class="store-time">${s.time}</div>
+              <div class="store-rating">★ ${s.rating}</div>
+            </div>
+          `).join('');
+        }
+      } else {
+        searchResults.classList.add('hidden');
+      }
+    });
+
+    // ====== EVENT LISTENERS ======
+    document.getElementById('basket-icon').addEventListener('click', openBasket);
+    document.getElementById('offers-basket-icon').addEventListener('click', openBasket);
+    document.getElementById('store-basket-icon').addEventListener('click', openBasket);
+    document.getElementById('store-back-button').addEventListener('click', closeStorePage);
+    document.getElementById('product-back-button').addEventListener('click', closeProductDetailPage);
+    document.getElementById('decrease-quantity').addEventListener('click', function() {
+      const qty = document.getElementById('quantity-display');
+      if (parseInt(qty.textContent) > 1) qty.textContent = parseInt(qty.textContent) - 1;
+    });
+    document.getElementById('increase-quantity').addEventListener('click', function() {
+      const qty = document.getElementById('quantity-display');
+      qty.textContent = parseInt(qty.textContent) + 1;
+    });
+    document.getElementById('add-to-basket').addEventListener('click', function() {
+      const qty = parseInt(document.getElementById('quantity-display').textContent);
+      addToBasket({...currentProduct, quantity: qty});
+      closeProductDetailPage();
+    });
+
+    // ====== LOGIN ======
+    document.getElementById('login-button').addEventListener('click', function() {
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      if (email && password) {
+        document.getElementById('login-page').style.display = 'none';
+        document.getElementById('app').style.display = 'block';
+        render();
+      } else {
+        alert('Please enter both email and password.');
+      }
+    });
+
+    // Initialize
+    render();
+  </script>
+</body>
+</html>
