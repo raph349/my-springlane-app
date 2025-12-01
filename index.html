@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -640,6 +641,266 @@
       border-radius: 25px;
       cursor: pointer;
     }
+
+    /* ===== STAFF INTERFACE ADDITIONS ===== */
+    .staff-fullpage {
+      min-height: 100vh;
+      display: none;
+      padding: 20px;
+      box-sizing: border-box;
+      background: linear-gradient(to bottom, #000, #200030);
+    }
+    .staff-title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .staff-title-main {
+      font-size: 40px;
+      font-weight: bold;
+      background: linear-gradient(to right, #ffffff, #8A2BE2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .staff-subtitle {
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-top: 5px;
+    }
+    .ims-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .ims-option {
+      background: #fff;
+      color: #000;
+      border-radius: 18px;
+      padding: 10px 8px;
+      text-align: center;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70px;
+    }
+    .ims-icon {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+    .ims-name {
+      font-weight: 600;
+    }
+    .staff-small-link {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 13px;
+    }
+    .staff-small-link span {
+      color: #8A2BE2;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .staff-consent {
+      font-size: 11px;
+      color: #ccc;
+      margin-top: 15px;
+      line-height: 1.4;
+    }
+    .staff-consent a {
+      color: #8A2BE2;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .staff-consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-top: 15px;
+    }
+    .staff-sync-circle {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 6px solid #8A2BE2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: bold;
+      margin: 40px auto 0;
+      box-shadow: 0 0 25px rgba(138, 43, 226, 0.6);
+    }
+    .staff-sync-label {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    #staff-sync-ims-name {
+      font-weight: bold;
+    }
+    #staff-app {
+      display: none;
+      padding: 20px;
+      padding-bottom: 70px;
+      box-sizing: border-box;
+      background: linear-gradient(to bottom, #000, #200030);
+      min-height: 100vh;
+    }
+    .staff-page {
+      display: none;
+    }
+    .staff-page.active {
+      display: block;
+    }
+    .staff-dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 30px;
+    }
+    .staff-card {
+      background: radial-gradient(circle at top left, #8A2BE2, #1a0026);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+    .staff-card-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      color: #ddd;
+    }
+    .staff-card-value {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .staff-card-secondary {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .staff-encouragement {
+      margin-top: 20px;
+      font-size: 13px;
+    }
+    .staff-bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(20, 10, 35, 0.95);
+      display: none;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      z-index: 900;
+    }
+    .staff-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 11px;
+      cursor: pointer;
+      color: #fff;
+    }
+    .staff-nav-item.active {
+      color: #b086ff;
+    }
+    .staff-nav-icon {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+    .staff-inventory-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    .staff-inventory-table th,
+    .staff-inventory-table td {
+      padding: 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-align: left;
+    }
+    .status-high {
+      color: #00ff8a;
+      font-weight: bold;
+    }
+    .status-med {
+      color: #ffd600;
+      font-weight: bold;
+    }
+    .status-low {
+      color: #ff5757;
+      font-weight: bold;
+    }
+    .staff-search {
+      width: 100%;
+      padding: 8px;
+      border-radius: 25px;
+      background: rgba(51, 25, 76, 0.5);
+      border: none;
+      color: white;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .staff-barcode-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 120px);
+    }
+    .staff-barcode-frame {
+      width: 70%;
+      max-width: 260px;
+      height: 160px;
+      border: 3px solid #fff;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+    .staff-barcode-lines {
+      font-size: 32px;
+      letter-spacing: 2px;
+    }
+    .staff-scan-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #ff4747;
+    }
+    .staff-account-block {
+      margin-top: 20px;
+      background: rgba(40, 20, 70, 0.9);
+      border-radius: 16px;
+      padding: 16px;
+    }
+    .staff-account-row {
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .staff-logout-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 25px;
+      border: none;
+      background: #ff4b5c;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -957,6 +1218,248 @@
     </div>
   </div>
 
+  <!-- ===== STAFF INTERFACE HTML ===== -->
+
+  <!-- Staff Login / Sign Up -->
+  <div id="staff-login-page" class="login-page" style="display:none;">
+    <div class="staff-title">
+      <div class="staff-title-main">SpringLane</div>
+      <div class="staff-subtitle">STAFF</div>
+    </div>
+    <div class="login-form">
+      <input type="email" class="login-input" id="staff-email" placeholder="john.doe@email.abc" />
+      <input type="password" class="login-input" id="staff-password" placeholder="Password" />
+      <button class="login-button" id="staff-login-button">Sign In / Sign Up</button>
+      <div class="login-links">
+        <span>Forgot Password? <span class="login-link" id="staff-forgot">Click Here</span></span><br>
+        <span>Customer? <span class="login-link" id="staff-back-to-customer">Sign In Here</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMS Selection Page -->
+  <div id="staff-ims-page" class="staff-fullpage">
+    <div class="staff-title">
+      <div class="staff-title-main">SpringLane</div>
+      <div class="staff-subtitle">STAFF</div>
+    </div>
+    <div style="text-align:center; margin-bottom:20px; font-size:18px;">
+      What's your Inventory<br/>Management System?
+    </div>
+    <div class="ims-grid">
+      <div class="ims-option ims-option-btn" data-ims="Katana">
+        <div class="ims-icon">🧶</div>
+        <div class="ims-name">Katana</div>
+      </div>
+      <div class="ims-option ims-option-btn" data-ims="MRP Easy">
+        <div class="ims-icon">📐</div>
+        <div class="ims-name">MRPeasy</div>
+      </div>
+      <div class="ims-option ims-option-btn" data-ims="CIN7">
+        <div class="ims-icon">7️⃣</div>
+        <div class="ims-name">CIN7</div>
+      </div>
+      <div class="ims-option ims-option-btn" data-ims="Odoo">
+        <div class="ims-icon">🧩</div>
+        <div class="ims-name">Odoo</div>
+      </div>
+      <div class="ims-option ims-option-btn" data-ims="Unleashed">
+        <div class="ims-icon">🦁</div>
+        <div class="ims-name">Unleashed</div>
+      </div>
+      <div class="ims-option ims-option-btn" data-ims="inFlow">
+        <div class="ims-icon">💧</div>
+        <div class="ims-name">inFlow</div>
+      </div>
+      <div class="ims-option ims-option-btn" data-ims="Fishbowl">
+        <div class="ims-icon">🐟</div>
+        <div class="ims-name">Fishbowl</div>
+      </div>
+      <div class="ims-option ims-option-btn" data-ims="Acumatica">
+        <div class="ims-icon">☁️</div>
+        <div class="ims-name">Acumatica</div>
+      </div>
+      <div class="ims-option ims-option-btn" data-ims="Webgility">
+        <div class="ims-icon">🕸️</div>
+        <div class="ims-name">Webgility</div>
+      </div>
+      <div class="ims-option ims-option-btn" data-ims="ApparelMagic">
+        <div class="ims-icon">🪄</div>
+        <div class="ims-name">Apparel</div>
+      </div>
+      <div class="ims-option ims-option-btn" data-ims="UP">
+        <div class="ims-icon">⤴️</div>
+        <div class="ims-name">UP</div>
+      </div>
+      <div class="ims-option ims-option-btn" data-ims="Lightspeed">
+        <div class="ims-icon">💡</div>
+        <div class="ims-name">Lightspeed</div>
+      </div>
+    </div>
+    <div class="staff-small-link">
+      Not sure yet? <span id="staff-ims-skip">Skip for now</span>
+    </div>
+  </div>
+
+  <!-- IMS Login Page -->
+  <div id="staff-ims-login-page" class="staff-fullpage">
+    <div class="staff-title">
+      <div class="staff-title-main" id="staff-ims-login-title">CIN7</div>
+      <div class="staff-subtitle">IMS SIGN IN</div>
+    </div>
+    <div class="login-form" style="max-width:320px; margin:0 auto;">
+      <input type="email" class="login-input" id="staff-ims-email" placeholder="john.doe@email.abc" />
+      <input type="password" class="login-input" id="staff-ims-password" placeholder="Password" />
+      <div class="staff-consent-row">
+        <input type="checkbox" id="staff-ims-consent" style="margin-top:2px;"/>
+        <div class="staff-consent">
+          I agree to connect my Inventory Management System (IMS) account to SpringLane for real-time data synchronization. By enabling this connection, I authorize SpringLane to access and update my product, stock, and sales information as needed for operational purposes.
+          <a>Learn More</a>
+        </div>
+      </div>
+      <button class="login-button" id="staff-ims-connect" style="margin-top:15px;">Connect IMS</button>
+      <div class="staff-small-link">
+        ← <span id="staff-ims-back">Back to IMS list</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMS Sync Page -->
+  <div id="staff-sync-page" class="staff-fullpage">
+    <div class="staff-title" style="margin-top:40px;">
+      <div class="staff-title-main">SpringLane</div>
+      <div class="staff-subtitle">IMS SYNC</div>
+    </div>
+    <div class="staff-sync-label">
+      IMS Sync with <span id="staff-sync-ims-name">CIN7</span>...
+    </div>
+    <div class="staff-sync-circle" id="staff-sync-circle">
+      <span id="staff-sync-percent">0%</span>
+    </div>
+    <div style="text-align:center; margin-top:25px; font-size:13px; color:#ccc;">
+      We're pulling your products, stock levels and recent sales so your team can start using SpringLane Data. 🔄
+    </div>
+  </div>
+
+  <!-- Staff Main App -->
+  <div id="staff-app">
+    <!-- Staff Home / Data -->
+    <div id="staff-home-page" class="staff-page active">
+      <div class="staff-title">
+        <div class="staff-title-main">SpringLane</div>
+        <div class="staff-subtitle">DATA</div>
+      </div>
+      <div class="staff-dashboard-grid">
+        <div class="staff-card">
+          <div class="staff-card-title">Sales this month</div>
+          <div class="staff-card-value" id="staff-sales-value">$342K</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-card-title">Stock Health</div>
+          <div class="staff-card-secondary" id="staff-stock-health">67%</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-card-title">Sales Variation</div>
+          <div class="staff-card-secondary" id="staff-sales-var">+23%</div>
+        </div>
+        <div class="staff-card">
+          <div class="staff-card-title">Alerts</div>
+          <div class="staff-card-secondary">5 low stock ⚠️</div>
+        </div>
+      </div>
+      <div class="staff-encouragement" id="staff-encouragement-text">
+        Great job! Sales are up 23% vs last month 🚀
+      </div>
+    </div>
+
+    <!-- Staff Inventory Page -->
+    <div id="staff-inventory-page" class="staff-page">
+      <div style="font-size:22px; font-weight:bold; margin-bottom:10px;">Inventory</div>
+      <input class="staff-search" placeholder="🔍 Search item, ref or size"/>
+      <table class="staff-inventory-table">
+        <thead>
+          <tr>
+            <th>Ref.</th>
+            <th>Size</th>
+            <th>Qty</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>526839</td><td>M</td><td>354</td><td class="status-high">HIGH</td></tr>
+          <tr><td>526839</td><td>S</td><td>278</td><td class="status-high">HIGH</td></tr>
+          <tr><td>526839</td><td>M</td><td>32</td><td class="status-low">LOW</td></tr>
+          <tr><td>526839</td><td>M</td><td>150</td><td class="status-med">MED</td></tr>
+          <tr><td>526839</td><td>M</td><td>354</td><td class="status-high">HIGH</td></tr>
+          <tr><td>526839</td><td>M</td><td>28</td><td class="status-low">LOW</td></tr>
+          <tr><td>526839</td><td>M</td><td>432</td><td class="status-high">HIGH</td></tr>
+          <tr><td>526839</td><td>M</td><td>234</td><td class="status-med">MED</td></tr>
+          <tr><td>526839</td><td>M</td><td>112</td><td class="status-med">MED</td></tr>
+          <tr><td>526839</td><td>M</td><td>403</td><td class="status-high">HIGH</td></tr>
+          <tr><td>526839</td><td>M</td><td>136</td><td class="status-med">MED</td></tr>
+          <tr><td>526839</td><td>M</td><td>236</td><td class="status-high">HIGH</td></tr>
+          <tr><td>526839</td><td>M</td><td>54</td><td class="status-low">LOW</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Staff Scan Page -->
+    <div id="staff-scan-page" class="staff-page">
+      <div class="staff-barcode-wrapper">
+        <div class="staff-barcode-frame">
+          <div class="staff-barcode-lines">▌▌▌▌▌▌▌▌▌▌▌</div>
+          <div class="staff-scan-line"></div>
+        </div>
+      </div>
+      <div style="text-align:center; font-size:14px; margin-top:-40px;">
+        Align the barcode inside the frame to scan 📷
+      </div>
+    </div>
+
+    <!-- Staff Account Page -->
+    <div id="staff-account-page" class="staff-page">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div style="font-size:26px; font-weight:bold;">Staff Member</div>
+          <div style="font-size:13px; color:#ccc;" id="staff-account-email">john.doe@email.abc</div>
+        </div>
+        <div style="font-size:40px;">👤</div>
+      </div>
+      <div class="staff-account-block">
+        <div class="staff-account-row">
+          Connected IMS: <span id="staff-account-ims">Not connected</span>
+        </div>
+        <div class="staff-account-row">
+          Role: Store staff 👕
+        </div>
+        <div class="staff-account-row">
+          Location: Main store 📍
+        </div>
+      </div>
+      <button class="staff-logout-btn" id="staff-logout-btn">Log out of Staff</button>
+    </div>
+  </div>
+
+  <!-- Staff Bottom Navigation -->
+  <div id="staff-bottom-nav" class="staff-bottom-nav">
+    <div class="staff-nav-item active" data-staff-page="staff-home-page" onclick="staffSwitchPage('staff-home-page')">
+      <div class="staff-nav-icon">📊</div>
+      <div>Home</div>
+    </div>
+    <div class="staff-nav-item" data-staff-page="staff-inventory-page" onclick="staffSwitchPage('staff-inventory-page')">
+      <div class="staff-nav-icon">📦</div>
+      <div>Inventory</div>
+    </div>
+    <div class="staff-nav-item" data-staff-page="staff-scan-page" onclick="staffSwitchPage('staff-scan-page')">
+      <div class="staff-nav-icon">📷</div>
+      <div>Scan</div>
+    </div>
+    <div class="staff-nav-item" data-staff-page="staff-account-page" onclick="staffSwitchPage('staff-account-page')">
+      <div class="staff-nav-icon">👤</div>
+      <div>Account</div>
+    </div>
+  </div>
+
   <script>
     // ====== DATA ======
     const stores = [
@@ -1239,6 +1742,143 @@
 
     // Initialize
     render();
+
+    // ====== STAFF INTERFACE LOGIC ======
+    const customerBottomNav = document.querySelector('.bottom-nav');
+    let staffSelectedIMS = null;
+    let staffSyncInterval = null;
+    let staffSyncProgress = 0;
+
+    function hideAllStaffScreens() {
+      ['staff-login-page','staff-ims-page','staff-ims-login-page','staff-sync-page','staff-app'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+    }
+
+    function goToStaffScreen(id) {
+      hideAllStaffScreens();
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (id === 'staff-login-page') {
+        el.style.display = 'flex';
+        document.getElementById('staff-bottom-nav').style.display = 'none';
+      } else if (id === 'staff-app') {
+        el.style.display = 'block';
+        document.getElementById('staff-bottom-nav').style.display = 'flex';
+      } else {
+        el.style.display = 'block';
+        document.getElementById('staff-bottom-nav').style.display = 'none';
+      }
+    }
+
+    function staffSwitchPage(pageId) {
+      document.querySelectorAll('.staff-page').forEach(p => p.classList.remove('active'));
+      const page = document.getElementById(pageId);
+      if (page) page.classList.add('active');
+      document.querySelectorAll('.staff-nav-item').forEach(n => n.classList.remove('active'));
+      const navItem = document.querySelector(`[data-staff-page="${pageId}"]`);
+      if (navItem) navItem.classList.add('active');
+    }
+
+    function startStaffSync() {
+      staffSyncProgress = 0;
+      const percentEl = document.getElementById('staff-sync-percent');
+      if (staffSyncInterval) clearInterval(staffSyncInterval);
+      staffSyncInterval = setInterval(() => {
+        staffSyncProgress += 4;
+        if (staffSyncProgress > 100) staffSyncProgress = 100;
+        percentEl.textContent = staffSyncProgress + '%';
+        if (staffSyncProgress >= 100) {
+          clearInterval(staffSyncInterval);
+          setTimeout(() => {
+            goToStaffScreen('staff-app');
+            staffSwitchPage('staff-home-page');
+          }, 400);
+        }
+      }, 100);
+    }
+
+    function staffLogout() {
+      hideAllStaffScreens();
+      document.getElementById('staff-bottom-nav').style.display = 'none';
+      document.getElementById('app').style.display = 'none';
+      document.getElementById('login-page').style.display = 'flex';
+      if (customerBottomNav) customerBottomNav.style.display = 'flex';
+    }
+
+    // Staff triggers
+    const staffLoginLink = document.getElementById('staff-login');
+    if (staffLoginLink) {
+      staffLoginLink.addEventListener('click', () => {
+        document.getElementById('app').style.display = 'none';
+        document.getElementById('login-page').style.display = 'none';
+        if (customerBottomNav) customerBottomNav.style.display = 'none';
+        goToStaffScreen('staff-login-page');
+      });
+    }
+
+    document.getElementById('staff-back-to-customer').addEventListener('click', () => {
+      hideAllStaffScreens();
+      document.getElementById('login-page').style.display = 'flex';
+      if (customerBottomNav) customerBottomNav.style.display = 'flex';
+    });
+
+    document.getElementById('staff-login-button').addEventListener('click', () => {
+      const email = document.getElementById('staff-email').value;
+      const password = document.getElementById('staff-password').value;
+      if (!email || !password) {
+        alert('Please enter both email and password.');
+        return;
+      }
+      document.getElementById('staff-account-email').textContent = email;
+      goToStaffScreen('staff-ims-page');
+    });
+
+    document.getElementById('staff-forgot').addEventListener('click', () => {
+      alert('A reset link would be sent to your staff email.');
+    });
+
+    document.querySelectorAll('.ims-option-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        staffSelectedIMS = btn.getAttribute('data-ims');
+        document.getElementById('staff-ims-login-title').textContent = staffSelectedIMS;
+        document.getElementById('staff-sync-ims-name').textContent = staffSelectedIMS;
+        document.getElementById('staff-account-ims').textContent = staffSelectedIMS;
+        goToStaffScreen('staff-ims-login-page');
+      });
+    });
+
+    document.getElementById('staff-ims-back').addEventListener('click', () => {
+      goToStaffScreen('staff-ims-page');
+    });
+
+    document.getElementById('staff-ims-skip').addEventListener('click', () => {
+      staffSelectedIMS = 'Not connected';
+      document.getElementById('staff-account-ims').textContent = staffSelectedIMS;
+      goToStaffScreen('staff-app');
+      staffSwitchPage('staff-home-page');
+      if (customerBottomNav) customerBottomNav.style.display = 'none';
+    });
+
+    document.getElementById('staff-ims-connect').addEventListener('click', () => {
+      const email = document.getElementById('staff-ims-email').value;
+      const password = document.getElementById('staff-ims-password').value;
+      const consent = document.getElementById('staff-ims-consent').checked;
+      if (!email || !password) {
+        alert('Please enter IMS email and password.');
+        return;
+      }
+      if (!consent) {
+        alert('Please agree to connect your IMS to continue.');
+        return;
+      }
+      goToStaffScreen('staff-sync-page');
+      startStaffSync();
+    });
+
+    document.getElementById('staff-logout-btn').addEventListener('click', staffLogout);
   </script>
 </body>
 </html>
+```
